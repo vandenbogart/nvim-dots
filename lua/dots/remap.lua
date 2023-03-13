@@ -20,8 +20,8 @@ vim.keymap.set({"n", "v"}, "<leader>d", [["_d]])
 
 vim.keymap.set("n", "<leader>f", vim.lsp.buf.format)
 
--- vim.keymap.set("n", "<C-j>", "<cmd>cnext<CR>zz")
--- vim.keymap.set("n", "<C-k>", "<cmd>cprev<CR>zz")
+vim.keymap.set("n", "<C-j>", "<cmd>cnext<CR>zz")
+vim.keymap.set("n", "<C-k>", "<cmd>cprev<CR>zz")
 -- vim.keymap.set("n", "<leader>gm", function ()
 --     vim.ui.input({ prompt = 'Search> ' }, function(input)
 --         vim.cmd.vimgrep('/'..input..'/ %')
@@ -33,6 +33,8 @@ vim.keymap.set("n", "<leader>f", vim.lsp.buf.format)
 
 vim.keymap.set("n", "<leader>s", [[:%s/\<<C-r><C-w>\>/<C-r><C-w>/gI<Left><Left><Left>]])
 
+vim.g['copilot_no_tab_map'] = true
+vim.api.nvim_set_keymap('i', '<C-/>', 'copilot#Accept("<CR>")', {expr=true, silent=true})
 
 
 
