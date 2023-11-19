@@ -3,7 +3,7 @@ local map = vim.keymap.set
 map({ 'n', 'v' }, '<Space>', '<Nop>', { silent = true })
 
 vim.g.mapleader = " "
-map("n", "<leader>pv", vim.cmd.Ex)
+map("n", "<leader>pv", "<CMD>Oil<CR>")
 
 map("v", "J", ":m '>+1<CR>gv=gv")
 map("v", "K", ":m '<-2<CR>gv=gv")

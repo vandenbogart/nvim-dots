@@ -31,12 +31,16 @@ return {
         keys = {
             { "K", vim.lsp.buf.hover, desc = "Hover" },
             { "gd", function() require("telescope.builtin").lsp_definitions({ reuse_win = true }) end, desc = "Goto Definition" },
-            { "gr", function() require("telescope.builtin").lsp_implementations({ reuse_win = true }) end, desc = "References" },
+            { "gr", function() require("telescope.builtin").lsp_references({ reuse_win = true }) end, desc = "References" },
             { "gD", vim.lsp.buf.declaration, desc = "Goto Declaration" },
             { "gI", function() require("telescope.builtin").lsp_implementations({ reuse_win = true }) end, desc = "Goto Implementation" },
             { "gy", function() require("telescope.builtin").lsp_type_definitions({ reuse_win = true }) end, desc = "Goto T[y]pe Definition" },
             { "<c-h>", vim.lsp.buf.signature_help, mode = "i", desc = "Signature Help" },
             { "<leader>ca", vim.lsp.buf.code_action, desc = "Code Action", mode = { "n", "v" } },
+            { "<leader>rn", vim.lsp.buf.rename, desc = "Rename" },
+            { "<leader>dd", vim.diagnostic.open_float, desc = "Diagnostics" },
+            { "[d", vim.diagnostic.goto_prev, desc = "Prev Diagnostic" },
+            { "]d", vim.diagnostic.goto_next, desc = "Next Diagnostic" }
         },
 		opts = {
             servers = {
@@ -52,12 +56,24 @@ return {
                             }
                         }
                     }
+                },
+                pyright = {
+                    capabilities = {
+                        textDocument = {
+                            publishDiagnostics = {
+                                tagSupport = {
+                                    valueSet = { 2 },
+                                },
+                            },
+                        },
+                    },
                 }
             },
             setup = {
                 tsserver = function(opts)
                     require('typescript').setup(opts)
                 end
+
             }
 
 		},
@@ -70,8 +86,11 @@ return {
             local mlsp = require('mason-lspconfig')
             for _, server in ipairs(mlsp.get_installed_servers()) do
                 local s_opts = server_opts[server] or {}
-                s_opts.capabilities = capabilities
-
+                if s_opts.capabilities then
+                    s_opts.capabilities = vim.tbl_deep_extend("force", capabilities, s_opts.capabilities)
+                else
+                    s_opts.capabilities = capabilities
+                end
                 if setups[server] then
                     setups[server](s_opts)
                 else

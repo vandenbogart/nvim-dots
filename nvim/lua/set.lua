@@ -28,5 +28,3 @@ vim.opt.foldcolumn = "1"
 vim.opt.isfname:append("@-@")
 
 vim.opt.updatetime = 50
-
-vim.g.netrw_banner = 0

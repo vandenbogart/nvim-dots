@@ -595,11 +595,11 @@ window_padding_width 0 2
 #: this option. Using a value of center means the cell area will be
 #: placed centrally. A value of top-left means the padding will be on
 #: only the bottom and right edges.
-active_border_color #2d2825
+active_border_color #ae9e98
 
 #: The color for the border of the active window. Set this to none to
 #: not draw borders around the active window.
-inactive_border_color #1C1917
+inactive_border_color #F0EDEC
 
 #: The color for the border of inactive windows
 
@@ -1529,6 +1529,6 @@ map cmd+[ previous_window
 
 
 # BEGIN_KITTY_THEME
-# zenbones_dark
+# zenbones_light
 include current-theme.conf
 # END_KITTY_THEME
