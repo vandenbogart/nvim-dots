@@ -15,15 +15,16 @@ return {
                 additional_vim_regex_highlighting = false,
             },
         },
-        config = function(_)
+        config = function(_, opts)
+            require('nvim-treesitter.configs').setup(opts)
             vim.cmd('TSUpdate')
         end,
     },
     {
         'nvim-treesitter/playground',
         keys = {
-            { "<leader>pt", function() vim.cmd('TSPlaygroundToggle') end, desc = "Toggle playground" },
-            { "<leader>pg", function() vim.cmd('Inspect') end, desc = "Inspect group" },
+            { "<leader>tt", function() vim.cmd('TSPlaygroundToggle') end, desc = "Toggle playground" },
+            { "<leader>tg", function() vim.cmd('Inspect') end, desc = "Inspect group" },
         }
     }
 }

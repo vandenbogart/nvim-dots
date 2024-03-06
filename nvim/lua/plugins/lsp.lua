@@ -44,9 +44,18 @@ return {
         },
 		opts = {
             servers = {
+                gopls = {
+                    filetypes = { "go", "gomod", "gowork", "gotmpl" },
+                    settings = {
+                        templateExtensions = { "gotmpl" }
+                    }
+                },
                 tsserver = {
 
 
+                },
+                html = {
+                    filetypes = { "html", "gotmpl" }
                 },
                 lua_ls = {
                     settings = {
@@ -77,6 +86,13 @@ return {
             }
 
 		},
+        init = function()
+            vim.filetype.add({
+                extension = {
+                    gotmpl = "gotmpl",
+                }
+            })
+        end,
 		config = function (_, opts)
             local server_opts = opts.servers
             local setups = opts.setup

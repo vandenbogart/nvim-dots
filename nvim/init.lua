@@ -1,4 +1,6 @@
+vim.g.maplocalleader = ","
 vim.g.mapleader = " "
+
 
 require("keys")
 require("set")

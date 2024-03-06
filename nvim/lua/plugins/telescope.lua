@@ -4,10 +4,11 @@ return {
         "nvim-lua/plenary.nvim",
     },
     keys = {
-        { "ff", function() require("telescope.builtin").find_files({ reuse_win = true }) end, desc = "Find Files" },
-        { "fg", function() require("telescope.builtin").live_grep({ reuse_win = true }) end, desc = "Live Grep" },
-        { "fb", function() require("telescope.builtin").buffers({ reuse_win = true }) end, desc = "Buffers" },
-        { "ft", function() require("telescope.builtin").treesitter({ reuse_win = true }) end, desc = "Treesitter" },
+        { "<leader>pf", function() require("telescope.builtin").find_files({ reuse_win = true }) end, desc = "Find Files" },
+        { "<leader>pg", function() require("telescope.builtin").live_grep({ reuse_win = true }) end, desc = "Live Grep" },
+        { "<C-b>", function() require("telescope.builtin").buffers({ reuse_win = true }) end, desc = "Buffers" },
+        { "<leader>pt", function() require("telescope.builtin").treesitter({ reuse_win = true }) end, desc = "Treesitter" },
+        { "<leader>pr", function() require("telescope.builtin").resume({ reuse_win = true }) end, desc = "Treesitter" },
     },
     opts = {
         pickers = {
