@@ -9,6 +9,8 @@ return {
         { "<C-b>", function() require("telescope.builtin").buffers({ reuse_win = true }) end, desc = "Buffers" },
         { "<leader>pt", function() require("telescope.builtin").treesitter({ reuse_win = true }) end, desc = "Treesitter" },
         { "<leader>pr", function() require("telescope.builtin").resume({ reuse_win = true }) end, desc = "Treesitter" },
+        { "<leader>ws", function() require("telescope.builtin").lsp_workspace_symbols({ reuse_win = true }) end, desc = "Treesitter" },
+        { "<leader>wd", function() require("telescope.builtin").diagnostics({ reuse_win = true }) end, desc = "Treesitter" },
     },
     opts = {
         pickers = {

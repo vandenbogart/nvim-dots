@@ -1,9 +1,9 @@
 return {
     {
         'yorik1984/newpaper.nvim',
-        enabled = true,
+        enabled = false,
         init = function()
-            vim.opt.background = "light"
+            vim.opt.background = "dark"
             vim.cmd("colorscheme newpaper")
         end,
         opts = {
@@ -31,7 +31,7 @@ return {
         'ramojus/mellifluous.nvim',
         enabled = false,
         init = function()
-            vim.opt.background = "light"
+            vim.opt.background = "dark"
             vim.cmd("colorscheme mellifluous")
         end,
     },
@@ -74,11 +74,12 @@ return {
         dependencies = {
             "rktjmp/lush.nvim",
         },
-        enabled = false,
+        enabled = true,
         init = function()
             vim.opt.background = "light"
             vim.g.zenbones = {
-                lightness = "bright",
+                -- lightness = "default",
+                -- darkness = "stark",
                 solid_vert_split = true,
                 solid_line_nr = true,
                 solid_float_border = true,
@@ -86,8 +87,12 @@ return {
                 darken_non_text = 40,
                 darken_line_nr = 60,
                 darken_cursor_line = 15,
+                -- lighten_comments = 60,
+                -- lighten_non_text = 40,
+                -- lighten_line_nr = 60,
+                -- lighten_cursor_line = 50,
                 colorize_diagnostic_underline_text = true,
-                transparent_mode = false,
+                transparent_background = false,
             }
             local spec = require('zenbones_extended')
             local lush = require('lush')

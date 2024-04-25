@@ -50,6 +50,11 @@ return {
                         templateExtensions = { "gotmpl" }
                     }
                 },
+                zls = {
+                    settings = {
+                        global_cache_path = "~/.cache/zig/"
+                    }
+                },
                 tsserver = {
 
 
@@ -113,6 +118,15 @@ return {
                     require('lspconfig')[server].setup(s_opts)
                 end
             end
+
+            -- ZLS
+            require('lspconfig').zls.setup({
+                cmd = { "zls" },
+                filetypes = { "zig" },
+                root_dir = require('lspconfig.util').root_pattern("zls.json", "build.zig", ".git"),
+                single_file_support = true,
+                capabilities = capabilities,
+            })
 		end
 	}
 }
