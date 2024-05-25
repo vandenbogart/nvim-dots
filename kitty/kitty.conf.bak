@@ -6,25 +6,38 @@
 #: individual font faces and even specify special fonts for particular
 #: characters.
 
-#font_family      Iosevka Term Extralight 
-#bold_font        Iosevka Term Semibold 
-#italic_font      Iosevka Term Extralight Italic
-#bold_italic_font Iosevka Term Semibold Italic
+# font_family      Iosevka Term Extralight 
+# bold_font        Iosevka Term Semibold 
+# italic_font      Iosevka Term Extralight Italic
+# bold_italic_font Iosevka Term Semibold Italic
+font_family      Iosevka Term Regular Extended
+bold_font        Iosevka Term Bold Extended
+italic_font      Iosevka Term Italic Extended
+bold_italic_font Iosevka Term Bold Italic Extended
+# font_family      Victor Mono Regular
+# bold_font        Victor Mono Bold
+# italic_font      Victor Mono Italic
+# bold_italic_font Victor Mono Bold Italic
+# font_family      JetBrains Mono Regular
+# bold_font        JetBrains Mono Bold
+# italic_font      JetBrains Mono Italic
+# bold_italic_font JetBrains Mono Bold Italic
+ 
 #### fonts
-font_family      JetBrains Mono NL Regular
-bold_font        JetBrains Mono NL Bold
-italic_font      JetBrains Mono NL Regular
-bold_italic_font JetBrains Mono NL Bold Italic
+# font_family      Monoisome
+# bold_font        Monoid Bold
+# italic_font      Monoid Italic
+# bold_italic_font Monoid Bold
 
 symbol_map U+23FB-U+23FE,U+2665,U+26A1,U+2B58,U+E000-U+E00A,U+E0A0-U+E0A3,U+E0B0-U+E0D4,U+E200-U+E2A9,U+E300-U+E3E3,U+E5FA-U+E6AA,U+E700-U+E7C5,U+EA60-U+EBEB,U+F000-U+F2E0,U+F300-U+F32F,U+F400-U+F4A9,U+F500-U+F8FF,U+F0001-U+F1AF0 Symbols Nerd Font Mono
-# discretionary ligatures, less weird %
-#font_features Iosevka +dlig cv93=3
+# # discretionary ligatures, less weird %
+font_features Iosevka +calt cv93=3
 
 # Make Ü/Ö fit properly
 # https://github.com/kovidgoyal/kitty/issues/2964
-adjust_line_height 4
+adjust_line_height 3
 # https://github.com/kovidgoyal/kitty/issues/297
-#disable_ligatures always
+disable_ligatures never
 
 #: You can specify different fonts for the bold/italic/bold-italic
 #: variants. To get a full list of supported fonts use the `kitty
@@ -38,7 +51,7 @@ adjust_line_height 4
 #:     italic_font      Operator Mono Book Italic
 #:     bold_italic_font Operator Mono Medium Italic
 
-font_size 16
+font_size 18
 
 #: Font size (in pts)
 
@@ -595,11 +608,11 @@ window_padding_width 0 2
 #: this option. Using a value of center means the cell area will be
 #: placed centrally. A value of top-left means the padding will be on
 #: only the bottom and right edges.
-active_border_color #ae9e98
+# active_border_color #544b45
 
 #: The color for the border of the active window. Set this to none to
 #: not draw borders around the active window.
-inactive_border_color #F0EDEC
+# inactive_border_color #1C1917
 
 #: The color for the border of inactive windows
 
@@ -1334,7 +1347,7 @@ map cmd+[ previous_window
 #: the first tab, 2 the second tab and -1 being the previously active
 #: tab, and any number larger than the last tab being the last tab::
 
-#:     map ctrl+alt+1 goto_tab 1
+     map cmd+shift+p goto_tab -1
 #:     map ctrl+alt+2 goto_tab 2
 
 #: Just as with new_window above, you can also pass the name of
@@ -1529,6 +1542,6 @@ map cmd+[ previous_window
 
 
 # BEGIN_KITTY_THEME
-# zenbones_light
+# vimbones
 include current-theme.conf
 # END_KITTY_THEME
