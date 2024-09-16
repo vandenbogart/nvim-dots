@@ -1,3 +1,4 @@
+local inspect = require('inspect');
 return {
     "hrsh7th/nvim-cmp",
     dependencies = {
@@ -17,6 +18,7 @@ return {
         local cmp = require("cmp")
         local ok, lspkind = pcall(require, "lspkind")
         if not ok then
+            error("FAILED TO LOAD LSPKIND")
             return
         end
 
@@ -87,28 +89,46 @@ return {
                 },
             },
             formatting = {
-                -- Youtube: How to set up nice formatting for your sources.
-                format = lspkind.cmp_format {
-                    with_text = true,
+                fields = { "kind", "abbr", "menu" },
+                format = lspkind.cmp_format({
+                    -- maxwidth = function() return math.floor(0.45 * vim.o.columns) end,
+                    -- (See [#30](https://github.com/onsails/lspkind-nvim/pull/30))
                     menu = {
-                        buffer = "[buf]",
+                        path = "[PATH]",
+                        buffer = "[BUF]",
                         nvim_lsp = "[LSP]",
-                        nvim_lua = "[api]",
-                        path = "[path]",
-                        luasnip = "[snip]",
-                        gh_issues = "[issues]",
-                        tn = "[TabNine]",
-                        eruby = "[erb]",
+                        nvim_lua = "[LUA]",
+                        luasnip = "[SNIP]",
                     },
-                },
+                    before = function(entry, vim_item)
+                        -- Rust, add details to docs
+                        if entry.completion_item.labelDetails then
+                            local labelDetails = entry.completion_item.labelDetails.detail
+                            if entry.completion_item.documentation and labelDetails then
+                                entry.completion_item.documentation.value = labelDetails.."\n\n"..entry.completion_item.documentation.value
+                            end
+                        end
+                        return vim_item
+                    end
+                })
+                -- Youtube: How to set up nice formatting for your sources.
+                -- format = lspkind.cmp_format {
+                --     with_text = true,
+                --     menu = {
+                --         buffer = "[buf]",
+                --         nvim_lsp = "[LSP]",
+                --         nvim_lua = "[api]",
+                --         path = "[path]",
+                --         luasnip = "[snip]",
+                --         gh_issues = "[issues]",
+                --         tn = "[TabNine]",
+                --         eruby = "[erb]",
+                --     },
+                -- },
             },
-            experimental = {
-                -- I like the new menu better! Nice work hrsh7th
-                native_menu = false,
-
-                -- Let's play with this for a day or two
-                ghost_text = false,
-            },
+            view = {
+                entries = "native"
+            }
         }
     end,
     config = function(_, opts)

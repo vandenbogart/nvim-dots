@@ -10,10 +10,6 @@ return {
 	{
 		"williamboman/mason-lspconfig.nvim",
 		opts = {
-			ensure_installed = {
-				"lua_ls",
-				"tsserver",
-			}
 		},
 	},
     {
@@ -54,10 +50,6 @@ return {
                     settings = {
                         global_cache_path = "~/.cache/zig/"
                     }
-                },
-                tsserver = {
-
-
                 },
                 html = {
                     filetypes = { "html", "gotmpl" }
