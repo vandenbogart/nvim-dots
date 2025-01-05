@@ -15,9 +15,6 @@ map("v", "K", ":m '<-2<CR>gv=gv")
 
 map("n", "J", "mzJ`z")
 
--- Copy/cut to system clipboard
-map("x", "<leader>p", [["_dP]])
-
 map({ "n", "v" }, "<leader>y", [["+y]])
 map("n", "<leader>Y", [["+Y]])
 map({ "n", "v" }, "<leader>d", [["_d]])

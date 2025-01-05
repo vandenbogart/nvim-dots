@@ -38,20 +38,19 @@ return {
         },
         event = { "BufReadPre", "BufNewFile" },
         keys = {
-            { "K",          vim.lsp.buf.hover,                                                                      desc = "Hover" },
-            { "gd",         function() require("telescope.builtin").lsp_definitions({ reuse_win = true }) end,      desc = "Goto Definition" },
-            { "gr",         function() require("telescope.builtin").lsp_references({ reuse_win = true }) end,       desc = "References" },
-            { "gD",         vim.lsp.buf.declaration,                                                                desc = "Goto Declaration" },
-            { "gI",         function() require("telescope.builtin").lsp_implementations({ reuse_win = true }) end,  desc = "Goto Implementation" },
-            { "gy",         function() require("telescope.builtin").lsp_type_definitions({ reuse_win = true }) end, desc = "Goto T[y]pe Definition" },
-            { "<c-h>",      vim.lsp.buf.signature_help,                                                             mode = "i",                     desc = "Signature Help" },
-            { "<leader>ca", vim.lsp.buf.code_action,                                                                desc = "Code Action",           mode = { "n", "v" } },
-            { "<leader>rn", vim.lsp.buf.rename,                                                                     desc = "Rename" },
-            { "<leader>ff", vim.lsp.buf.format,                                                                     desc = "Format" },
-            { "<leader>dd", vim.diagnostic.open_float,                                                              desc = "Diagnostics" },
+            { "K",          vim.lsp.buf.hover,                                          desc = "Hover" },
+            { "gt",         vim.lsp.buf.type_definition,                                desc = "Type Definition" },
+            { "gd",         vim.lsp.buf.definition,                                     desc = "Definition" },
+            { "gD",         vim.lsp.buf.declaration,                                    desc = "Declaration" },
+            { "<leader>wf", vim.lsp.buf.add_workspace_folder,                           desc = "Add folder to workspace" },
+            { "<c-h>",      vim.lsp.buf.signature_help,                                 mode = "i",                      desc = "Signature Help" },
+            { "<leader>ca", vim.lsp.buf.code_action,                                    desc = "Code Action",            mode = { "n", "v" } },
+            { "<leader>rn", vim.lsp.buf.rename,                                         desc = "Rename" },
+            { "<leader>ff", vim.lsp.buf.format,                                         desc = "Format" },
+            { "<leader>dd", vim.diagnostic.open_float,                                  desc = "Diagnostics" },
 
-            { "[d",         vim.diagnostic.goto_prev,                                                               desc = "Prev Diagnostic" },
-            { "]d",         vim.diagnostic.goto_next,                                                               desc = "Next Diagnostic" }
+            { "[d",         function() vim.diagnostic.jump({ count = -1, float = true }) end, desc = "Prev Diagnostic" },
+            { "]d",         function() vim.diagnostic.jump({ count = 1, float = true }) end, desc = "Next Diagnostic" }
         },
         config = function(_, opts)
             local server_opts = opts.servers or {}

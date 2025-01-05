@@ -1,11 +1,10 @@
 return {
     {
-
         "mcchrish/zenbones.nvim",
         dependencies = {
             "rktjmp/lush.nvim",
         },
-        enabled = true,
+        enabled = false,
         init = function()
             vim.opt.background = "light"
             vim.g.zenbones = {
@@ -25,14 +24,53 @@ return {
                 colorize_diagnostic_underline_text = true,
                 transparent_background = false,
             }
-            vim.cmd[[colorscheme zenbones]]
+            vim.cmd [[colorscheme zenbones]]
         end,
     },
     {
         'yorickpeterse/nvim-grey',
-        enabled = false;
+        enabled = false,
         config = function()
             vim.cmd [[colorscheme grey]]
         end
+    },
+    {
+        "ramojus/mellifluous.nvim",
+        enabled = false,
+        init = function()
+            vim.opt.background = "dark"
+            vim.cmd [[colorscheme mellifluous]]
+        end
+    },
+    {
+        "lukas-reineke/indent-blankline.nvim",
+        enabled = false,
+        main = "ibl",
+        ---@module "ibl"
+        ---@type ibl.config
+        opts = {},
+    },
+    {
+        'rcarriga/nvim-notify'
+    },
+    {
+        'lewis6991/gitsigns.nvim',
+    },
+    {
+        "nyoom-engineering/oxocarbon.nvim",
+        enabled = false,
+        init = function()
+            vim.opt.background = "dark"
+            vim.cmd [[colorscheme oxocarbon]]
+        end
+    },
+    {
+        "rebelot/kanagawa.nvim",
+        enabled = true,
+        init = function()
+            vim.opt.background = "dark"
+            vim.cmd [[colorscheme kanagawa]]
+        end
+
     }
 }
