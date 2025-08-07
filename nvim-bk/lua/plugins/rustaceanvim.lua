@@ -11,6 +11,8 @@ vim.g.rustaceanvim = {
                 { desc = "Code Action", buffer = bufnr })
             vim.keymap.set("n", "<leader>dr", function() vim.cmd.RustLsp("debuggables") end,
                 { desc = "Rust Debuggables", buffer = bufnr })
+            vim.keymap.set("n", "<leader>rt", function() vim.cmd.RustLsp("testables") end,
+                { desc = "Rust Testables", buffer = bufnr })
             vim.keymap.set("n", "<leader>em", function() vim.cmd.RustLsp("expandMacro") end,
                 { desc = "Rust Expand Macro", buffer = bufnr })
         end,
@@ -37,6 +39,9 @@ vim.g.rustaceanvim = {
                         -- ["napi-derive"] = { "napi" },
                         -- ["async-recursion"] = { "async_recursion" },
                     },
+                },
+                runnables = {
+                    extraTestBinaryArgs = { "--nocapture" },
                 },
                 files = {
                     excludeDirs = {
