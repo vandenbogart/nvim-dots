@@ -2,6 +2,7 @@ local wezterm = require 'wezterm'
 local act = wezterm.action
 local agent_workspaces = require 'agent_workspaces'
 local git_status = require 'git_status'
+local kitty_compat = require 'kitty_compat'
 
 local config_dir = os.getenv('XDG_CONFIG_HOME')
   and (os.getenv('XDG_CONFIG_HOME') .. '/wezterm')
@@ -463,6 +464,11 @@ for _, key in ipairs(agent_workspaces.keys()) do
   table.insert(config.keys, key)
 end
 
+for _, key in ipairs(kitty_compat.keys()) do
+  table.insert(config.keys, key)
+end
+
 git_status.apply_to_config(config)
+kitty_compat.apply_to_config(config)
 
 return config
