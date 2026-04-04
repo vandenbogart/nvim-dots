@@ -12,14 +12,10 @@ local function notify(window, title, message)
   end)
 end
 
-local function focus_existing_workspace(workspace_name)
+local function workspace_exists(workspace_name)
   for _, mux_window in ipairs(mux.all_windows()) do
     if mux_window:get_workspace() == workspace_name then
-      local gui_window = mux_window:gui_window()
-      if gui_window then
-        gui_window:focus()
-        return true
-      end
+      return true
     end
   end
 
@@ -45,20 +41,14 @@ local function spawn_workspace(profile)
       repo_tab:set_title(repo.name)
     end
   end
-
-  local gui_window = mux_window:gui_window()
-  if gui_window then
-    gui_window:maximize()
-    gui_window:focus()
-  end
 end
 
-local function open_profile(profile)
-  if focus_existing_workspace(profile.workspace) then
-    return
+local function open_profile(window, pane, profile)
+  if not workspace_exists(profile.workspace) then
+    spawn_workspace(profile)
   end
 
-  spawn_workspace(profile)
+  window:perform_action(act.SwitchToWorkspace { name = profile.workspace }, pane)
 end
 
 local function kill_workspace(workspace_name)
@@ -103,14 +93,14 @@ local function kill_workspace(workspace_name)
   return true
 end
 
-local function open_agent(window, agent_id)
+local function open_agent(window, pane, agent_id)
   local profile = profiles.find(agent_id)
   if not profile then
     notify(window, 'WezTerm', 'Agent profile not found: ' .. agent_id)
     return
   end
 
-  open_profile(profile)
+  open_profile(window, pane, profile)
 end
 
 local function rebuild_agent(window, pane, agent_id)
@@ -131,6 +121,7 @@ local function rebuild_agent(window, pane, agent_id)
   end
 
   spawn_workspace(profile)
+  window:perform_action(act.SwitchToWorkspace { name = profile.workspace }, pane)
   notify(window, 'WezTerm', 'Rebuilt ' .. profile.workspace)
 end
 
@@ -147,9 +138,9 @@ wezterm.on('show-agent-selector', function(window, pane)
       title = 'Launch agent workspace',
       fuzzy = true,
       choices = choices,
-      action = wezterm.action_callback(function(inner_window, _, id)
+      action = wezterm.action_callback(function(inner_window, inner_pane, id)
         if id then
-          open_agent(inner_window, id)
+          open_agent(inner_window, inner_pane, id)
         end
       end),
     },
