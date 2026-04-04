@@ -131,8 +131,7 @@ function M.selector_choices()
   for _, profile in ipairs(M.discover()) do
     table.insert(choices, {
       id = profile.id,
-      label = profile.id,
-      description = string.format('%d repos · %s', #profile.repos, profile.root),
+      label = string.format('%s · %d repos · %s', profile.id, #profile.repos, profile.root),
     })
   end
 
